@@ -1,0 +1,6 @@
+c;sergio bianchi;11571129780;(21)97515-7146;sergio.bianchi@al.infnet.edu.br;22245-100
+a;Nero;12340987;28/02/2010;10.7;vira lata;super docil;
+c;lara bianchi;11571129781;(21)97515-7146;lara.bianchi@al.infnet.edu.br;22245-100
+a;Pirata;23450986;02/09/2010;10.7;vira lata;Brabo;
+c;gael bianchi;11571129782;(21)97515-7146;gael.bianchi@al.infnet.edu.br;22245-100
+c;ana carolina bianchi;12409435718;(21)97515-7146;ana.bianchi@al.infnet.edu.br;22245-100
