@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.sergioB.model.domain.Animal;
 import br.edu.infnet.sergioB.model.domain.Cliente;
 import br.edu.infnet.sergioB.model.domain.Endereco;
+import br.edu.infnet.sergioB.model.repository.ClienteRepository;
 import br.edu.infnet.sergioB.model.service.ClienteService;
 
 @Component
@@ -22,6 +23,7 @@ public class Loader implements ApplicationRunner{
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception{
+				
 		//System.out.println("Hello World!!!");
 		FileReader file =  new FileReader("files/Clientes.txt");
 		BufferedReader leitura = new BufferedReader(file);
@@ -51,6 +53,7 @@ public class Loader implements ApplicationRunner{
 				cliente.setEndereco(endereco);
 								
 				//mapaClientes.put(cliente.getCpf(), cliente);
+				
 				clienteService.incluir(cliente);
 				
 				break;
