@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.sergioB.client.EnderecoClient;
 import br.edu.infnet.sergioB.model.domain.Animal;
 import br.edu.infnet.sergioB.model.domain.Cliente;
 import br.edu.infnet.sergioB.model.domain.Endereco;
@@ -21,9 +22,12 @@ public class Loader implements ApplicationRunner{
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private EnderecoClient enderecoClient;
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception{
-				
+		
 		//System.out.println("Hello World!!!");
 		FileReader file =  new FileReader("files/Clientes.txt");
 		BufferedReader leitura = new BufferedReader(file);
@@ -41,15 +45,13 @@ public class Loader implements ApplicationRunner{
 			case "C":
 				//cliente = new Cliente();
 				
-				Endereco endereco = new Endereco();
-				endereco.setCep(campos[5]);
-				
+				Endereco endereco = enderecoClient.findByCep("20540001");
+								
 				cliente = new Cliente();
 				cliente.setNome(campos[1]);
 				cliente.setCpf(Float.parseFloat(campos[2]));
 				cliente.setTel(campos[3]);
 				cliente.setEmail(campos[4]);
-				
 				cliente.setEndereco(endereco);
 								
 				//mapaClientes.put(cliente.getCpf(), cliente);
