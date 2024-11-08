@@ -1,8 +1,6 @@
 package br.edu.infnet.sergioB.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +16,18 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private LocalizacaoService localizacaoService;
-	
-	private Map<Float, Cliente> mapaClientes = new HashMap<Float, Cliente>();
-	public void incluir(Cliente cliente) {
-		
+
+	public Cliente incluir(Cliente cliente) {
+
 		String cep = cliente.getEndereco().getCep();
 		Endereco endereco = localizacaoService.findByCep(cep);
-		
+
 		cliente.setEndereco(endereco);
-		
-		mapaClientes.put(cliente.getCpf(), cliente);
-		
-		clienteRepository.save(cliente);
+
+		return clienteRepository.save(cliente);
 	}
-	
-	public Collection<Cliente> lerLista(){
-		return mapaClientes.values();
+
+	public Collection<Cliente> lerLista() {
+		return (Collection<Cliente>) clienteRepository.findAll();
 	}
 }

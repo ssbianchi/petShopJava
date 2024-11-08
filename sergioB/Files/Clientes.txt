@@ -1,6 +1,14 @@
-c;sergio bianchi;42997325021;(21)97225-6577;sergio.bianchi@al.infnet.edu.br;22245-100
-a;Nero;12340987;28/02/2010;10.7;vira lata;super docil;
-c;lara bianchi;84424233030;(24)99138-7215;lara.bianchi@al.infnet.edu.br;22245-100
-a;Pirata;23450986;02/09/2010;10.7;vira lata;Brabo;
-c;gael bianchi;86640820064;(22)98451-5374;gael.bianchi@al.infnet.edu.br;22245-100
-c;ana carolina bianchi;10682142018;(22)97557-1677;ana.bianchi@al.infnet.edu.br;22245-100
+c;sergio bianchi;42997325021;(21)97225-6577;sergio.bianchi@al.infnet.edu.br;20540001
+a;Nero;12340987;28/02/2010;10.7;vira lata;super docil
+v;9874;Consulta Rotina;150;false;Claudio;2412;Clinico Geral
+e;12345;Exame de Rotina;150;false;Sangue;Rotina;3456;XPYTZ
+c;lara bianchi;84424233030;(24)99138-7215;lara.bianchi@al.infnet.edu.br;20540001
+a;Pirata;23450986;02/09/2010;10.7;vira lata;Docil
+v;9874;Consulta Rotina;150;false;Claudio;2412;Clinico Geral
+c;gael bianchi;86640820064;(22)98451-5374;gael.bianchi@al.infnet.edu.br;20540001
+a;Belinha;974792374;20/02/2008;13.7;Pinxer;Brabo
+v;9874;Consulta Rotina;150;false;Claudio;2412;Clinico Geral
+c;ana carolina bianchi;10682142018;(22)97557-1677;ana.bianchi@al.infnet.edu.br;20540001
+a;Princesa;2371;08/05/2013;15.7;Labrador;Adora Carinho
+v;9874;Consulta Rotina;150;false;Claudio;2412;Clinico Geral
+e;12345;Exame de Rotina;150;false;Sangue;Rotina;3456;XPYTZ

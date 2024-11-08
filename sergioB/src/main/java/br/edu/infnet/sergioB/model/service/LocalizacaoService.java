@@ -13,23 +13,23 @@ import br.edu.infnet.sergioB.model.domain.Municipio;
 
 @Service
 public class LocalizacaoService {
-	
+
 	@Autowired
 	private EnderecoClient enderecoClient;
 	@Autowired
 	private LocalidadeClient localidadeClient;
-	
+
 	public Endereco findByCep(String cep) {
 		return enderecoClient.findByCep(cep);
 	}
-	
-	public Collection<Estado> findEstados(){
+
+	public Collection<Estado> findEstados() {
 		return localidadeClient.findEstado();
 	}
-	
-	public Collection<Municipio> findMunicipioByUf(Integer uf){
+
+	public Collection<Municipio> findMunicipioByUf(Integer uf) {
 		return localidadeClient.findMunicipio(uf);
-		
+
 	}
 
 }

@@ -3,10 +3,14 @@ package br.edu.infnet.sergioB.model.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,8 +27,10 @@ public class Cliente {
 	private String tel;
 	private String email;
 	
-	@Transient
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "clientId")
 	private List<Animal> animals;
+	
 	@Transient
 	private Endereco endereco;
 	
@@ -35,12 +41,12 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return String.format("[%f] Cliente %s cadastrado com sucesso! Pets: %d, Endereco: $s", 
+		return String.format("[%f] %d Cliente %s cadastrado com sucesso! Pets: %d, Endereco: $s", 
 				cpf,
+				id,
 				nome,
 				animals.size(),
 				endereco);
-		//return "[" + cpf + "] Cliente " + nome + "cadastrado com sucesso!" + animals.size() + endereco.toString();
 	}
 
 	public Integer getId() {

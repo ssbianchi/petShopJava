@@ -1,14 +1,26 @@
 package br.edu.infnet.sergioB.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="TExame")
 public class Exame extends Servico{
-	private String descricao;
+	private String nome;
+	private String Caracteristica;
 	private String codlaudo;
 	private String laboratorio;
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCaracteristica() {
+		return Caracteristica;
+	}
+	public void setCaracteristica(String caracteristica) {
+		Caracteristica = caracteristica;
 	}
 	public String getCodlaudo() {
 		return codlaudo;
@@ -22,4 +34,5 @@ public class Exame extends Servico{
 	public void setLaboratorio(String laboratorio) {
 		this.laboratorio = laboratorio;
 	}
+	
 }
