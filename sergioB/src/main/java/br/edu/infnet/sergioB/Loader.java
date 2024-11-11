@@ -116,6 +116,8 @@ public class Loader implements ApplicationRunner {
 			System.out.println("Cliente cadastrado com sucesso: " + c);
 		}
 
+		//System.out.println("## findByNomeContaining ## " + clienteService.lerPorNome("bianchi"));
+	
 		leitura.close();
 	}
 }

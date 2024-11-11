@@ -11,42 +11,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "TCliente")
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
 	private float cpf;
 	private String tel;
 	private String email;
-	
+
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "clientId")
+	@JsonManagedReference
 	private List<Animal> animals;
-	
-	@Transient
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idEndereco")
 	private Endereco endereco;
-	
-	public Cliente() 
-	{
+
+	public Cliente() {
 		animals = new ArrayList<Animal>();
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("[%f] %d Cliente %s cadastrado com sucesso! Pets: %d, Endereco: $s", 
-				cpf,
-				id,
-				nome,
-				animals.size(),
-				endereco);
+		return String.format("[%f] %d Cliente %s cadastrado com sucesso! Pets: %d, Endereco: $s", cpf, id, nome,
+				animals.size(), endereco);
 	}
 
 	public Integer getId() {

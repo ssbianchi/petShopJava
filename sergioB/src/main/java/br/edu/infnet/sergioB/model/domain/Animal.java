@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,20 +30,21 @@ public class Animal {
 	private Float peso;
 	private String descricao;
 	private String raca;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "clientId")
+	@JoinColumn(name = "clientId")
+	@JsonBackReference
 	private Cliente cliente;
-	
+
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "animalId")
+	@JsonBackReference
 	private List<Servico> servicos;
 
-	public Animal() 
-	{
+	public Animal() {
 		servicos = new ArrayList<Servico>();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -65,7 +68,7 @@ public class Animal {
 	public void setRegistroAnimal(String registroAnimal) {
 		this.registroAnimal = registroAnimal;
 	}
-	
+
 	public LocalDate getDtNascimento() {
 		return dtNascimento;
 	}
@@ -113,6 +116,5 @@ public class Animal {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
 
 }

@@ -1,8 +1,10 @@
 package br.edu.infnet.sergioB.model.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.sergioB.model.domain.Cliente;
@@ -28,6 +30,25 @@ public class ClienteService {
 	}
 
 	public Collection<Cliente> lerLista() {
-		return (Collection<Cliente>) clienteRepository.findAll();
+		return (Collection<Cliente>) clienteRepository.findAll(Sort.by(Sort.Order.asc("nome")));
+	}
+
+	public boolean excluir(Integer id) {
+
+		clienteRepository.deleteById(id);
+
+		return true;
+	}
+
+	public List<Cliente> lerPorNome(String nome) {
+		return clienteRepository.findByNomeContaining(nome, Sort.by(Sort.Order.asc("nome")));
+	}
+
+	public long lerQtde() {
+		return clienteRepository.count();
+	}
+
+	public Cliente lerPorId(Integer id) {
+		return clienteRepository.findById(id).orElse(null);
 	}
 }
