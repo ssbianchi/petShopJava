@@ -14,4 +14,6 @@ public interface ServicoRepository extends CrudRepository<Servico, Integer> {
 	List<Servico> findByDescricaoContaining(String descricao, Sort by);
 	
 	Iterable<Servico> findAll(Sort by);
+	
+	List<Servico> findByPrecoBetween(float precoInicial, float precoFinal);
 }

@@ -34,13 +34,13 @@ public class ClienteController {
 	//		@ApiResponse(responseCode = "500", description = "Erro interno do sistema")
 	//	})
 	
-	@GetMapping(value = "/lista/cliente")
+	@GetMapping(value = "/cliente/lista")
 	public Collection<Cliente> lerLista(){
 		return clienteService.lerLista();
 	}
 	
 	//@Operation(summary = "Lista os clientes através do nome.")
-	@GetMapping(value = "/lista/cliente/{nome}")
+	@GetMapping(value = "/cliente/lista/{nome}")
 	public ResponseEntity<List<Cliente>> obterPorNome(@PathVariable String nome){
 		
 		List<Cliente> clientes = clienteService.lerPorNome(nome);

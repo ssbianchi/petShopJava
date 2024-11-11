@@ -14,7 +14,7 @@ public class AtendenteController {
 	@Autowired
 	private AtendenteService atendenteService;
 	
-	@GetMapping(value = "/lista/atendente")
+	@GetMapping(value = "/atendente/lista")
 	public Collection<Atendente> lerLista(){
 		return atendenteService.lerLista();
 	}
