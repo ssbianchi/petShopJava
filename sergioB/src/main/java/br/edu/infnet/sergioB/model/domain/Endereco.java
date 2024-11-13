@@ -24,7 +24,7 @@ public class Endereco {
 	public Endereco() {
 
 	}
-
+	
 	public Endereco(String cep) {
 		this();
 		this.setCep(cep);
@@ -32,8 +32,17 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereço: " + cep;
+	    return "Endereco {\n" +
+	           "  ID: " + id + ",\n" +
+	           "  CEP: '" + (cep != null ? cep : "N/A") + "',\n" +
+	           "  Logradouro: '" + (logradouro != null ? logradouro : "N/A") + "',\n" +
+	           "  Complemento: '" + (complemento != null ? complemento : "N/A") + "',\n" +
+	           "  Bairro: '" + (bairro != null ? bairro : "N/A") + "',\n" +
+	           "  Localidade: '" + (localidade != null ? localidade : "N/A") + "',\n" +
+	           "  UF: '" + (uf != null ? uf : "N/A") + "'\n" +
+	           "}";
 	}
+
 
 	public Integer getId() {
 		return id;

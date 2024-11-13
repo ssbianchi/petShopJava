@@ -40,7 +40,7 @@ public class AppController {
 	public String clienteLista(Model model) {
 
 		model.addAttribute("titulo", "Listagem de clientes");
-		model.addAttribute("listagem", clienteService.lerLista());
+		model.addAttribute("clientes", clienteService.lerLista());
 
 		return telaHome(model);
 	}
@@ -49,7 +49,7 @@ public class AppController {
 	public String animalLista(Model model) {
 
 		model.addAttribute("titulo", "Listagem de animais");
-		model.addAttribute("listagem", animalService.lerLista());
+		model.addAttribute("animais", animalService.lerLista());
 
 		return telaHome(model);
 	}
@@ -58,7 +58,7 @@ public class AppController {
 	public String servicoLista(Model model) {
 
 		model.addAttribute("titulo", "Listagem de servicos");
-		model.addAttribute("listagem", servicoService.lerLista());
+		model.addAttribute("servicos", servicoService.lerLista());
 
 		return telaHome(model);
 	}
@@ -67,7 +67,7 @@ public class AppController {
 	public String veterinarioLista(Model model) {
 
 		model.addAttribute("titulo", "Listagem de servicos veterinários");
-		model.addAttribute("listagem", veterinarioService.lerLista());
+		model.addAttribute("veterinarios", veterinarioService.lerLista());
 
 		return telaHome(model);
 	}
@@ -76,7 +76,7 @@ public class AppController {
 	public String exameLista(Model model) {
 
 		model.addAttribute("titulo", "Listagem de servicos exames");
-		model.addAttribute("listagem", exameService.lerLista());
+		model.addAttribute("exames", exameService.lerLista());
 
 		return telaHome(model);
 	}

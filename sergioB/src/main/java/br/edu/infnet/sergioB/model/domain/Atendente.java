@@ -18,6 +18,25 @@ public class Atendente {
 	private String email;
 	private String matricula;
 
+	@Override
+	public String toString() {
+	    return String.format(
+	        "Atendente {\n" +
+	        "  ID: %d,\n" +
+	        "  Nome: '%s',\n" +
+	        "  CPF: '%s',\n" +
+	        "  Email: '%s',\n" +
+	        "  Matrícula: '%s'\n" +
+	        "}",
+	        id,
+	        nome != null ? nome : "N/A",
+	        cpf != null ? cpf : "N/A",
+	        email != null ? email : "N/A",
+	        matricula != null ? matricula : "N/A"
+	    );
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

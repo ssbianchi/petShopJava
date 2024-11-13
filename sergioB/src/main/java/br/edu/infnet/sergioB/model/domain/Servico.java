@@ -25,8 +25,22 @@ public abstract class Servico {
 	private boolean emergencia;
 
 	@ManyToOne
-	@JoinColumn(name = "animalId")
+	@JoinColumn(name = "animal_id")
 	private Animal animal;
+	
+	@Override
+	public String toString() {
+	    return "Servico {\n" +
+	           "  ID: " + id + "\n" +
+	           "  Descrição: '" + (descricao != null ? descricao : "N/A") + "'\n" +
+	           "  Código: " + codigo + "\n" +
+	           "  Preço: R$" + preco + "\n" +
+	           "  Emergência: " + (emergencia ? "Sim" : "Não") + "\n" +
+	           "  Animal: " + (animal != null ? animal.getNome() : "N/A") + "\n" +
+	           "}";
+	}
+
+
 
 	public Integer getId() {
 		return id;

@@ -25,17 +25,16 @@ public class Cliente {
 	private Integer id;
 
 	private String nome;
-	private float cpf;
+	private String cpf;
 	private String tel;
 	private String email;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "clientId")
-	@JsonManagedReference
-	private List<Animal> animals;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonManagedReference 
+    private List<Animal> animals;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "idEndereco")
+	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
 	public Cliente() {
@@ -44,9 +43,26 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return String.format("[%f] %d Cliente %s cadastrado com sucesso! Pets: %d, Endereco: $s", cpf, id, nome,
-				animals.size(), endereco);
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Cliente {\n")
+	      .append("  ID: ").append(id).append(",\n")
+	      .append("  Nome: '").append(nome != null ? nome : "N/A").append("',\n")
+	      .append("  CPF: ").append(cpf).append(",\n")
+	      .append("  Telefone: '").append(tel != null ? tel : "N/A").append("',\n")
+	      .append("  Email: '").append(email != null ? email : "N/A").append("',\n")
+	      .append("  Endereço: ").append(endereco != null ? endereco : "N/A").append(",\n")
+	      .append("  Animais: ").append(animals.isEmpty() ? "Nenhum" : animals.size()).append("\n");
+
+	    if (!animals.isEmpty()) {
+	        sb.append("  Lista de Animais:\n");
+	        for (Animal animal : animals) {
+	            sb.append("    - ").append(animal).append("\n");
+	        }
+	    }
+	    sb.append("}");
+	    return sb.toString();
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -64,11 +80,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public float getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(float cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

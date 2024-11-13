@@ -30,20 +30,43 @@ public class Animal {
 	private Float peso;
 	private String descricao;
 	private String raca;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "clientId")
-	@JsonBackReference
-	private Cliente cliente;
+    @JoinColumn(name = "cliente_id")
+    @JsonBackReference
+    private Cliente cliente;
 
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "animalId")
-	@JsonBackReference
 	private List<Servico> servicos;
 
 	public Animal() {
 		servicos = new ArrayList<Servico>();
 	}
+	
+	@Override
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Animal {\n")
+	      .append("  ID: ").append(id).append("\n")
+	      .append("  Nome: '").append(nome != null ? nome : "N/A").append("'\n")
+	      .append("  Registro: '").append(registroAnimal != null ? registroAnimal : "N/A").append("'\n")
+	      .append("  Data de Nascimento: ").append(dtNascimento != null ? dtNascimento : "N/A").append("\n")
+	      .append("  Peso: ").append(peso != null ? String.format("%.2f kg", peso) : "N/A").append("\n")
+	      .append("  Raça: '").append(raca != null ? raca : "N/A").append("'\n")
+	      .append("  Descrição: '").append(descricao != null ? descricao : "N/A").append("'\n")
+	      .append("  Cliente: ").append(cliente != null ? cliente.getNome() : "Sem cliente associado").append("\n")
+	      .append("  Serviços: ").append(servicos.isEmpty() ? "Nenhum serviço" : servicos.size()).append("\n");
+
+	    if (!servicos.isEmpty()) {
+	        sb.append("  Lista de Serviços:\n");
+	        for (Servico servico : servicos) {
+	            sb.append("    - ").append(servico).append("\n");
+	        }
+	    }
+	    sb.append("}");
+	    return sb.toString();
+	}
+
 
 	public Integer getId() {
 		return id;

@@ -56,7 +56,7 @@ public class Loader implements ApplicationRunner {
 				cliente = new Cliente();
 
 				cliente.setNome(campos[1]);
-				cliente.setCpf(Float.parseFloat(campos[2]));
+				cliente.setCpf(campos[2]);
 				cliente.setTel(campos[3]);
 				cliente.setEmail(campos[4]);
 				cliente.setEndereco(endereco);

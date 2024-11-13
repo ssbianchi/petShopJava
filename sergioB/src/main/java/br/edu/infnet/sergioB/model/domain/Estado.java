@@ -5,6 +5,17 @@ public class Estado {
 	private String sigla;
 	private String nome;
 
+	@Override
+	public String toString() {
+	    return "Estado {\n" +
+	           "  ID: " + (id != null ? id : "N/A") + ",\n" +
+	           "  Sigla: '" + (sigla != null ? sigla : "N/A") + "',\n" +
+	           "  Nome: '" + (nome != null ? nome : "N/A") + "'\n" +
+	           "}";
+	}
+
+
+	
 	public Integer getId() {
 		return id;
 	}

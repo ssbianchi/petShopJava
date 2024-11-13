@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 
-
+import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Cliente;
 import br.edu.infnet.sergioB.model.service.ClienteService;
 
@@ -23,6 +24,7 @@ import br.edu.infnet.sergioB.model.service.ClienteService;
 //import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
+@RequestMapping("/cliente")
 public class ClienteController {
 
 	@Autowired
@@ -34,13 +36,13 @@ public class ClienteController {
 	//		@ApiResponse(responseCode = "500", description = "Erro interno do sistema")
 	//	})
 	
-	@GetMapping(value = "/cliente/lista")
+	@GetMapping(value = "/lista")
 	public Collection<Cliente> lerLista(){
 		return clienteService.lerLista();
 	}
 	
 	//@Operation(summary = "Lista os clientes através do nome.")
-	@GetMapping(value = "/cliente/lista/{nome}")
+	@GetMapping(value = "/lista/{nome}")
 	public ResponseEntity<List<Cliente>> obterPorNome(@PathVariable String nome){
 		
 		List<Cliente> clientes = clienteService.lerPorNome(nome);
@@ -52,17 +54,15 @@ public class ClienteController {
 		return ResponseEntity.ok(clientes);
 	}	
 	
-	/*
-	@Operation(summary = "Inclui um novo cliente.")
-	@PostMapping(value = "/incluir")
-	public ResponseEntity<String> incluir(@Valid @RequestBody Cliente cliente) {
-		
-		clienteService.incluir(cliente);
+
+	@PostMapping(value = "/incluir", consumes = "application/json")
+	public ResponseEntity<String> incluir(@RequestBody Cliente cliente) {
+	    clienteService.incluir(cliente);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(Constantes.MSG_INCLUSAO_SUCESSO);
 	}
 	
-	@Operation(summary = "Exclui um cliente através do ID.")
+	//@Operation(summary = "Exclui um cliente através do ID.")
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		
@@ -70,14 +70,14 @@ public class ClienteController {
 			return ResponseEntity.ok(Constantes.MSG_EXCLUSAO_SUCESSO);
 		}
 
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Constantes.MSG_CLEINTE_NOT_FOUND);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Constantes.MSG_CLIENTE_NOT_FOUND);
 	}
 	
-	@Operation(summary = "Pega um cliente através do ID.")
+	//@Operation(summary = "Pega um cliente através do ID.")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Cliente> obterPorId(@PathVariable Integer id) {
 		
-		Cliente cliente = clienteService.obterPorId(id);
+		Cliente cliente = clienteService.lerPorId(id);
 		
 		if(cliente == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -85,5 +85,5 @@ public class ClienteController {
 		
 		return ResponseEntity.ok(cliente);
 	}
-	*/
+	
 }
