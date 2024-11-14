@@ -9,24 +9,27 @@ Abaixo, o diagrama de arquitetura do sistema, que ilustra as principais interaç
 ![Diagrama de Arquitetura do Sistema](Prints/DiagramaPetShop.png)
 
 ## Interface do Usuário
-
 As capturas de tela abaixo mostram as principais funcionalidades da interface.
+**LINK:** [Acessar Swagger UI](http://localhost:8082/)
 
 ![Tela Clientes](Prints/15.png)
 
 ![Tela Animais](Prints/16.png)
 
 ## Banco de dados
+**LINK:** [Acessar Swagger UI](http://localhost:8082/h2-console/)
 
 ![Tela Animais](Prints/08.png)
 
 ## Postman
 Abaixo, a tela de com o Postman:
+**LINK:** [Acessar Postman](https://www.postman.com/orange-satellite-791185/infnet/request/28757400-734971cc-1ce6-4419-9aed-3ca238944d05)
 
 ![Tela Postman](Prints/19.png)
 
 ## Swagger
 Abaixo, a tela de com o Swagger:
+**LINK:**[Acessar Swagger UI](http://localhost:8082/swagger-ui/index.html#/)
 
 ![Tela Swagger](Prints/20.png)
 
