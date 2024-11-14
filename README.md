@@ -1,9 +1,13 @@
 ﻿# Arquitetura Java - Projeto PetShopJava
 
-Este projeto faz parte do estudo de Arquitetura Java e será desenvolvido em quatro etapas. Nesta primeira entrega, implementei a funcionalidade de **Cadastro de Clientes e Serviços**, que permite registrar clientes com seus respectivos serviços (Veterinário e Exame) em um sistema básico utilizando Spring Boot.
+O projeto está dividido em quatro features distintas para atender às necessidades do desenvolvimento ágil. A divisão em features permite:
+- **Flexibilidade e Entrega Iterativa**: Entregas frequentes que respondem rapidamente a mudanças nos requisitos.
+- **Priorização de Valor**: Implementação das funcionalidades mais cruciais primeiro.
+- **Feedback Contínuo**: Clientes podem fornecer feedback mais cedo, possibilitando melhorias contínuas.
+- **Transparência e Comunicação Eficaz**: A definição clara das features facilita a comunicação e colaboração.
+- **Redução de Riscos**: Dividir o projeto em features ajuda a identificar problemas antecipadamente.
 
 ## Arquitetura do Sistema
-
 Abaixo, o diagrama de arquitetura do sistema, que ilustra as principais interações entre as classes e componentes do sistema de PetShop:
 
 ![Diagrama de Arquitetura do Sistema](Prints/DiagramaPetShop.png)
@@ -34,15 +38,6 @@ Abaixo, a tela de com o Swagger:
 ![Tela Swagger](Prints/20.png)
 
 ![Tela Swagger](Prints/21.png)
-
-## Projeto
-O projeto será dividido em quatro features distintas para atender às necessidades do desenvolvimento ágil. A divisão em features permite:
-
-- **Flexibilidade e Entrega Iterativa**: Entregas frequentes que respondem rapidamente a mudanças nos requisitos.
-- **Priorização de Valor**: Implementação das funcionalidades mais cruciais primeiro.
-- **Feedback Contínuo**: Clientes podem fornecer feedback mais cedo, possibilitando melhorias contínuas.
-- **Transparência e Comunicação Eficaz**: A definição clara das features facilita a comunicação e colaboração.
-- **Redução de Riscos**: Dividir o projeto em features ajuda a identificar problemas antecipadamente.
 
 ### Feature 01
 Estabelece a base do sistema de PetShop, com criação de classes de domínio, leitura de dados e funcionalidades básicas de serviço.
@@ -229,4 +224,3 @@ Ao iniciar a aplicação, estamos passando o argumento --server.port=8082 para p
 
 ## Autor
 **Sergio Bianchi**
-
