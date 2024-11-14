@@ -16,6 +16,10 @@ As capturas de tela abaixo mostram as principais funcionalidades da interface.
 
 ![Tela Animais](Prints/16.png)
 
+## Banco de dados
+
+![Tela Animais](Prints/08.png)
+
 ## Postman
 Abaixo, a tela de com o Postman:
 
@@ -25,6 +29,9 @@ Abaixo, a tela de com o Postman:
 Abaixo, a tela de com o Swagger:
 
 ![Tela Swagger](Prints/20.png)
+
+![Tela Swagger](Prints/21.png)
+
 
 ## Projeto
 O projeto será dividido em quatro features distintas para atender às necessidades do desenvolvimento ágil. A divisão em features permite:
