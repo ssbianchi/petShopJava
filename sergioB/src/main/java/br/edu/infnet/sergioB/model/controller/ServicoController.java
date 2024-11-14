@@ -10,24 +10,30 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Servico;
 import br.edu.infnet.sergioB.model.service.ServicoService;
 
 @RestController
+@RequestMapping("/servico")
 public class ServicoController {
 	@Autowired
 	private ServicoService servicoService;
 
-	@GetMapping(value = "/servico/lista")
+	@GetMapping(value = "/lista")
 	public Collection<Servico> lerLista() {
 		return servicoService.lerLista();
 	}
 
-	@GetMapping(value = "/servico/filtrarPorPreco/{min}/{max}")
-	//public ResponseEntity<List<Servico>> obterListaPorPreco(@RequestParam float min, @RequestParam float max) {
+	@GetMapping(value = "/filtrarPorPreco/{min}/{max}")
+	// public ResponseEntity<List<Servico>> obterListaPorPreco(@RequestParam float
+	// min, @RequestParam float max) {
 	public ResponseEntity<List<Servico>> obterListaPorPreco(@PathVariable float min, @PathVariable float max) {
 
 		if (min < 0 || max < 0 || min > max) {
@@ -43,7 +49,14 @@ public class ServicoController {
 		return ResponseEntity.ok(produtos);
 	}
 
-	@DeleteMapping(value = "/servico/{id}/excluir")
+	@PostMapping(value = "/incluir", consumes = "application/json")
+	public ResponseEntity<String> incluir(@RequestBody Servico servico) {
+		servicoService.incluir(servico);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(Constantes.MSG_INCLUSAO_SUCESSO);
+	}
+
+	@DeleteMapping(value = "/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
 
 		servicoService.excluir(id);
@@ -51,12 +64,12 @@ public class ServicoController {
 		return "Exclusão realizada com sucesso.";
 	}
 
-	@GetMapping(value = "/servico/{id}")
+	@GetMapping(value = "/{id}")
 	public Servico obterPorId(@PathVariable Integer id) {
 		return servicoService.lerPorId(id);
 	}
 
-	@PatchMapping(value = "/servico/alterar")
+	@PatchMapping(value = "/alterar")
 	public ResponseEntity<Servico> alterar(@RequestParam Integer id, @RequestParam float preco) {
 
 		Servico produtoAtualizado = servicoService.alterar(id, preco);

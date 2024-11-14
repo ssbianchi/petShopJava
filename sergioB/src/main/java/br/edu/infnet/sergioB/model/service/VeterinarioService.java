@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Veterinario;
 import br.edu.infnet.sergioB.model.repository.VeterinarioRepository;
+import exceptions.VeterinarioNaoEncontradoException;
 
 @Service
 public class VeterinarioService {
@@ -40,5 +42,15 @@ public class VeterinarioService {
 
 	public Veterinario lerPorId(Integer id) {
 		return veterinarioRepository.findById(id).orElse(null);
+	}
+	
+	public Veterinario alterar(Integer id, float preco) {
+
+		Veterinario veterinarioExistente = veterinarioRepository.findById(id)
+				.orElseThrow(() -> new VeterinarioNaoEncontradoException(Constantes.MSG_SERVICO_NOT_FOUND));
+
+		veterinarioExistente.setPreco(preco);
+
+		return veterinarioRepository.save(veterinarioExistente);
 	}
 }

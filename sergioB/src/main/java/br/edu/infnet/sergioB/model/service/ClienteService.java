@@ -8,11 +8,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.sergioB.Constantes;
-import br.edu.infnet.sergioB.model.domain.Animal;
 import br.edu.infnet.sergioB.model.domain.Cliente;
 import br.edu.infnet.sergioB.model.domain.Endereco;
-import br.edu.infnet.sergioB.model.repository.AnimalRepository;
 import br.edu.infnet.sergioB.model.repository.ClienteRepository;
+import exceptions.ClienteNaoEncontradoException;
 
 @Service
 public class ClienteService {
@@ -54,15 +53,15 @@ public class ClienteService {
 	public Cliente lerPorId(Integer id) {
 		return clienteRepository.findById(id).orElse(null);
 	}
-	
-	/*public Animal alterar(Integer id, float peso) {
-		
-		Animal animalExistente = AnimalRepository.findById(id).orElseThrow(() -> 
-			new AnimalNaoEncontradoException(Constantes.MSG_ANIMAL_NOT_FOUND));
-		
-		animalExistente.setPeso(peso);
-		
-		return AnimalRepository.save(animalExistente);
+
+	public Cliente alterar(Integer id, String email) {
+
+		Cliente clienteExistente = clienteRepository.findById(id)
+				.orElseThrow(() -> new ClienteNaoEncontradoException(Constantes.MSG_ANIMAL_NOT_FOUND));
+
+		clienteExistente.setEmail(email);
+
+		return clienteRepository.save(clienteExistente);
 	}
-	*/
+
 }

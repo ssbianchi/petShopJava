@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Animal;
 import br.edu.infnet.sergioB.model.repository.AnimalRepository;
+import exceptions.AnimalNaoEncontradoException;
 
 @Service
 public class AnimalService {
@@ -40,5 +42,15 @@ public class AnimalService {
 
 	public Animal lerPorId(Integer id) {
 		return animalRepository.findById(id).orElse(null);
+	}
+	
+	public Animal alterar(Integer id, float peso) {
+
+		Animal animalExistente = animalRepository.findById(id)
+				.orElseThrow(() -> new AnimalNaoEncontradoException(Constantes.MSG_SERVICO_NOT_FOUND));
+
+		animalExistente.setPeso(peso);
+
+		return animalRepository.save(animalExistente);
 	}
 }
