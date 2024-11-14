@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Cliente;
 import br.edu.infnet.sergioB.model.service.ClienteService;
-
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.responses.ApiResponse;
-//import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/cliente")
@@ -28,61 +27,66 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
-	//@Operation(summary = "Recupera todos os clientes existentes.")
-	//@ApiResponses(value = {
-	//		@ApiResponse(responseCode = "200", description = "Sucesso"),
-	//		@ApiResponse(responseCode = "500", description = "Erro interno do sistema")
-	//	})
-	
+
+	@Operation(summary = "Lista todos os clientes existentes.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/lista")
-	public Collection<Cliente> lerLista(){
+	public Collection<Cliente> lerLista() {
 		return clienteService.lerLista();
 	}
-	
-	//@Operation(summary = "Lista os clientes através do nome.")
+
+	@Operation(summary = "Lista o cliente através do nome.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/lista/{nome}")
-	public ResponseEntity<List<Cliente>> obterPorNome(@PathVariable String nome){
-		
+	public ResponseEntity<List<Cliente>> obterPorNome(@PathVariable String nome) {
+
 		List<Cliente> clientes = clienteService.lerPorNome(nome);
-		
-		if(clientes.isEmpty()) {
+
+		if (clientes.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(clientes);
 		}
-		
-		return ResponseEntity.ok(clientes);
-	}	
-	
 
+		return ResponseEntity.ok(clientes);
+	}
+
+	@Operation(summary = "Incluir cliente.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@PostMapping(value = "/incluir", consumes = "application/json")
 	public ResponseEntity<String> incluir(@RequestBody Cliente cliente) {
-	    clienteService.incluir(cliente);
-		
+		clienteService.incluir(cliente);
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(Constantes.MSG_INCLUSAO_SUCESSO);
 	}
-	
-	//@Operation(summary = "Exclui um cliente através do ID.")
+
+	@Operation(summary = "Exclui um cliente através do ID.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
-		
-		if(clienteService.excluir(id)) {
+
+		if (clienteService.excluir(id)) {
 			return ResponseEntity.ok(Constantes.MSG_EXCLUSAO_SUCESSO);
 		}
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Constantes.MSG_CLIENTE_NOT_FOUND);
 	}
-	
-	//@Operation(summary = "Pega um cliente através do ID.")
+
+	@Operation(summary = "Pega um cliente através do ID.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Cliente> obterPorId(@PathVariable Integer id) {
-		
+
 		Cliente cliente = clienteService.lerPorId(id);
-		
-		if(cliente == null) {
+
+		if (cliente == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
+
 		return ResponseEntity.ok(cliente);
 	}
-	
+
 }

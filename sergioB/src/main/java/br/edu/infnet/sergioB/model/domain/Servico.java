@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TServico")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Servico {
+public class Servico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,23 +24,20 @@ public abstract class Servico {
 	private float preco;
 	private boolean emergencia;
 
+	public Servico() {
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
 	private Animal animal;
-	
+
 	@Override
 	public String toString() {
-	    return "Servico {\n" +
-	           "  ID: " + id + "\n" +
-	           "  Descrição: '" + (descricao != null ? descricao : "N/A") + "'\n" +
-	           "  Código: " + codigo + "\n" +
-	           "  Preço: R$" + preco + "\n" +
-	           "  Emergência: " + (emergencia ? "Sim" : "Não") + "\n" +
-	           "  Animal: " + (animal != null ? animal.getNome() : "N/A") + "\n" +
-	           "}";
+		return "Servico {\n" + "  ID: " + id + "\n" + "  Descrição: '" + (descricao != null ? descricao : "N/A") + "'\n"
+				+ "  Código: " + codigo + "\n" + "  Preço: R$" + preco + "\n" + "  Emergência: "
+				+ (emergencia ? "Sim" : "Não") + "\n" + "  Animal: " + (animal != null ? animal.getNome() : "N/A")
+				+ "\n" + "}";
 	}
-
-
 
 	public Integer getId() {
 		return id;

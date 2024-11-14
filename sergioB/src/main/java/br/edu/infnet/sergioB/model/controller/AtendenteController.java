@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.infnet.sergioB.Constantes;
 import br.edu.infnet.sergioB.model.domain.Atendente;
 import br.edu.infnet.sergioB.model.service.AtendenteService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/atendente")
@@ -24,11 +27,15 @@ public class AtendenteController {
 	@Autowired
 	private AtendenteService atendenteService;
 
+	@Operation(summary = "Lista todos os atendentes.")
 	@GetMapping(value = "/lista")
 	public Collection<Atendente> lerLista() {
 		return atendenteService.lerLista();
 	}
 
+	@Operation(summary = "Lista atendente por nome.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/lista/{nome}")
 	public ResponseEntity<List<Atendente>> obterPorNome(@PathVariable String nome) {
 
@@ -41,6 +48,9 @@ public class AtendenteController {
 		return ResponseEntity.ok(atendentes);
 	}
 
+	@Operation(summary = "Inclui atendente.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@PostMapping(value = "/incluir", consumes = "application/json")
 	public ResponseEntity<String> incluir(@RequestBody Atendente atendente) {
 		atendenteService.incluir(atendente);
@@ -48,7 +58,9 @@ public class AtendenteController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(Constantes.MSG_INCLUSAO_SUCESSO);
 	}
 
-	// @Operation(summary = "Exclui um atendente através do ID.")
+	@Operation(summary = "Exclui um atendente através do ID.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 
@@ -59,7 +71,9 @@ public class AtendenteController {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Constantes.MSG_CLIENTE_NOT_FOUND);
 	}
 
-	// @Operation(summary = "Pega um atendente através do ID.")
+	@Operation(summary = "Pega um atendente através do ID.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Atendente> obterPorId(@PathVariable Integer id) {
 

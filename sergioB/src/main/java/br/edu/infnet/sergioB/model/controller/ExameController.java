@@ -15,76 +15,77 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.infnet.sergioB.Constantes;
-import br.edu.infnet.sergioB.model.domain.Animal;
-import br.edu.infnet.sergioB.model.service.AnimalService;
+import br.edu.infnet.sergioB.model.domain.Exame;
+import br.edu.infnet.sergioB.model.service.ExameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@RequestMapping("/animal")
-public class AnimalController {
-	@Autowired
-	private AnimalService animalService;
+@RequestMapping("/exame")
+public class ExameController {
 
-	@Operation(summary = "Lista todos os animais.")
+	@Autowired
+	private ExameService exameService;
+
+	@Operation(summary = "Recupera todos os veterinarios existentes.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
 			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/lista")
-	public Collection<Animal> lerLista() {
-		return animalService.lerLista();
+	public Collection<Exame> lerLista() {
+		return exameService.lerLista();
 	}
 
-	@Operation(summary = "Lista os animais através do nome.")
+	@Operation(summary = "Lista os exames através do nome.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
 			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/lista/{nome}")
-	public ResponseEntity<List<Animal>> obterPorNome(@PathVariable String nome) {
+	public ResponseEntity<List<Exame>> obterPorNome(@PathVariable String nome) {
 
-		List<Animal> animais = animalService.lerPorNome(nome);
+		List<Exame> exames = exameService.lerPorNome(nome);
 
-		if (animais.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(animais);
+		if (exames.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exames);
 		}
 
-		return ResponseEntity.ok(animais);
+		return ResponseEntity.ok(exames);
 	}
 
-	@Operation(summary = "Inclui animal.")
+	@Operation(summary = "Inclui um exame.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
 			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@PostMapping(value = "/incluir", consumes = "application/json")
-	public ResponseEntity<String> incluir(@RequestBody Animal animal) {
-		animalService.incluir(animal);
+	public ResponseEntity<String> incluir(@RequestBody Exame exame) {
+		exameService.incluir(exame);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(Constantes.MSG_INCLUSAO_SUCESSO);
 	}
 
-	@Operation(summary = "Exclui um animal através do ID.")
+	@Operation(summary = "Exclui um exame através do ID.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
 			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 
-		if (animalService.excluir(id)) {
+		if (exameService.excluir(id)) {
 			return ResponseEntity.ok(Constantes.MSG_EXCLUSAO_SUCESSO);
 		}
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Constantes.MSG_CLIENTE_NOT_FOUND);
 	}
 
-	@Operation(summary = "Pega um animal através do ID.")
+	@Operation(summary = "Pega um exame através do ID.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Sucesso"),
 			@ApiResponse(responseCode = "500", description = "Erro interno do sistema") })
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Animal> obterPorId(@PathVariable Integer id) {
+	public ResponseEntity<Exame> obterPorId(@PathVariable Integer id) {
 
-		Animal animal = animalService.lerPorId(id);
+		Exame exame = exameService.lerPorId(id);
 
-		if (animal == null) {
+		if (exame == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 
-		return ResponseEntity.ok(animal);
+		return ResponseEntity.ok(exame);
 	}
 }
